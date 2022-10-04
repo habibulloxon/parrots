@@ -7,11 +7,12 @@
   <title>Parrots</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/1a052ad93a.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="./img/icon.svg" type="image/x-icon">
 </head>
 <body>
   <div class="container my-5">
     <div class="d-flex justify-content-between">
-      <h1 class="h2">Zimbabwa parrots</h1>
+      <h1 class="h2">Khabib's parrots</h1>
 
       <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#add-parrot-modal">
         <span class="me-2">Add parrot</span>
@@ -25,7 +26,7 @@
         <form class="filter" action="#">
           <div class="mb-3">
             <label for="search" class="form-label">Search</label>
-            <input type="search" class="form-control" id="search" placeholder="Falonchi">
+            <input type="search" class="form-control" id="search" placeholder="Name">
           </div>
           <div class="mb-3">
             <label class="form-label">Price</label>
@@ -89,7 +90,7 @@
         </ul>
       </section>
 
-      <section class="col-3">
+      <!-- <section class="col-3">
         <h2 class="h4 mb-4">Favorite parrots</h2>
 
         <ul class="list-unstyled remove-list">
@@ -98,7 +99,7 @@
             <button class="btn btn-danger btn-sm d-inline" style="width: fit-content" type="button">Remove</button>
           </li>
         </ul>
-      </section>
+      </section> -->
     </div>
   </div>
  
@@ -193,7 +194,7 @@
       <label for="features" class="form-label">Features ("," bilan ajratib yozing)</label>
       <input type="text" class="form-control" id="edit-features" placeholder="Qo'lga o'rgatilgan,Gapira oladi">
     </div>
-    <button type="submit" class="btn btn-primary d-block w-100 p-2">Filter</button>
+    <button type="submit" class="btn btn-primary d-block w-100 p-2">Edit</button>
   </form>
 </div>
 </div>
@@ -221,8 +222,7 @@
           </ul>
 
           <div class="position-absolute top-0 end-0 d-flex">
-            <!-- Agar isFavorite false bo'ladigan bo'lsa i'ning classi "fa-solid fa-star" bo'lishi kerak. Agar unday bo'lmasa "fa fa-star-o" -->
-            <button class="btn rounded-0 btn-success parrots__star-btn"><i class="fa-solid fa-star" style="color: yellow; pointer-events: none;"></i></button>
+            
             <button class="btn rounded-0 btn-secondary parrots__edit-btn" data-bs-toggle="modal" data-bs-target="#edit-parrot-modal"><i class="fa-solid fa-pen" style="pointer-events: none;"></i></button>
             <button class="btn rounded-0 btn-danger parrots__del-btn"><i class="fa-solid fa-trash" style="pointer-events: none;"></i></button>
           </div>

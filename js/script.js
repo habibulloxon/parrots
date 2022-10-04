@@ -1,6 +1,5 @@
 let parrotsClone = parrots.slice()
 const template = document.querySelector('.template')
-// FUNCTIONS
 
 const renderParrot = (parrot) => {
     const {
@@ -24,7 +23,7 @@ const renderParrot = (parrot) => {
     parrotPrice.textContent = `${price}$`
 
     const parrotSize = templateClone.querySelector('.parrots__subtitle');
-    // parrotSize.textContent = `${sizes.width + "sm"} x ${sizes.height + "sm"}`
+    parrotSize.textContent = `${sizes.width}x${sizes.height}`
 
     const parrotBirthDate = templateClone.querySelector('.parrots__date');
     parrotBirthDate.textContent = birthDate
@@ -32,8 +31,6 @@ const renderParrot = (parrot) => {
     const parrotFeatures = templateClone.querySelector('.parrots__list-item');
     parrotFeatures.textContent = features
 
-    const parrotStar = templateClone.querySelector('.parrots__star-btn')
-    parrotStar.setAttribute('data-parrot-id', id);
 
     const parrotEdit = templateClone.querySelector('.parrots__edit-btn');
     parrotEdit.setAttribute('data-parrot-id', id);
@@ -97,8 +94,9 @@ addParrotForm.addEventListener('submit', (e) => {
     }
     renderParrots()
     addModalBoot.hide()
+    addParrotForm.reset()
 })
-// localStorage.clear()
+
 const editForm = document.getElementById('edit-form')
 const editTitle = document.getElementById("edit-parrot-title")
 const editImg = document.getElementById("edit-parrot-img")
@@ -146,26 +144,18 @@ editForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const editId = +e.target.dataset.editingId
 
-    const titleInput = editTitle.value
-    const imgInput = editImg.value
-    const priceInput = editPrice.value
-    const dateInput = editDate.value
-    const widthInput = editWidth.value
-    const heightInput = editHeight.value
-    const featuresInput = editFeatures.value
-
-    if (titleInput.trim() && priceInput && widthInput && heightInput && featuresInput && dateInput){
+    if (editTitle.value.trim()){
         let newParrot = {
             id: editId,
-            title: titleInput,
-            img: imgInput,
-            price: priceInput,
-            birthDate: dateInput,
+            title: editTitle.value,
+            img: editImg.value,
+            price: editPrice.value,
+            birthDate: editDate.value,
             sizes:{
-                width: widthInput,
-                height: heightInput
+                width: editWidth.value,
+                height: editHeight.value
             },
-            features: featuresInput
+            features: editFeatures.value
         }
         const editingItemIndex = parrots.findIndex((parrot) => {
             return parrot.id === editId
@@ -184,6 +174,7 @@ editForm.addEventListener('submit', (e) => {
         editModalBoot.hide()
     }
     renderParrots()
+    editForm.reset()
 })
 
 
@@ -229,23 +220,24 @@ filterForm.addEventListener('submit', (e) => {
                 break;
         }
     })
-    // .filter(function(parrot) {
-    //     return parrot.price >= priceFromInput;
-    // }).filter(function(parrot) {
-    //     return !priceToInput ? true : parrot.price <= priceToInput;
-    // }).filter(function(parrot) {
-    //     return parrot.sizes.width >= widthFromInput;
-    // }).filter(function(parrot) {
-    //     return !widthToInput ? true : parrot.sizes.width <= widthToInput;
-    // }).filter(function(parrot) {
-    //     return parrot.sizes.height >= heightFromInput;
-    // }).filter(function(parrot) {
-    //     return !heightToInput ? true : parrot.sizes.height <= heightToInput;
-    // })
+    .filter(function(parrot) {
+        return parrot.price >= priceFromInput;
+    }).filter(function(parrot) {
+        return !priceToInput ? true : parrot.price <= priceToInput;
+    }).filter(function(parrot) {
+        return parrot.sizes.width >= widthFromInput;
+    }).filter(function(parrot) {
+        return !widthToInput ? true : parrot.sizes.width <= widthToInput;
+    }).filter(function(parrot) {
+        return parrot.sizes.height >= heightFromInput;
+    }).filter(function(parrot) {
+        return !heightToInput ? true : parrot.sizes.height <= heightToInput;
+    })
     .filter((parrot) => {
         const regularExp = new RegExp(searchInput, "gi")
         const title = `${parrot.title}`;
         return title.match(regularExp)
     })
     renderParrots()
+    filterForm.reset()
 })
